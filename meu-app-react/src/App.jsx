@@ -21,6 +21,8 @@ function App() {
     }else if (data<hoje){
       alert('data invalida')
     }
+
+    localStorage.setItem('post', JSON.stringify({Titulo: titulo, Descrição: descricao, URL: url, Data: data, Categoria: categoria}))
    }
   return(
     <>
