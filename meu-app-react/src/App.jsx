@@ -1,17 +1,30 @@
-import { useState } from 'react'
+import { use, useState } from 'react'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
+  const [titulo,setTitulo] = useState('')
+  const [descricao, setDescricao] = useState('')
+   function save(event){
+    event.preventDefault()
+
+   }
+  return(
     <>
       <div id='painel'>
         <h1>Painel de gerenciamento</h1>
         <span>Novo post</span>
-       <form action="">
-        <input type="text" placeholder='Titulo' />
-        <textarea name="descricao" id="descricao" placeholder='descrição'></textarea>
+       <form action="" onSubmit={save}>
+        <input type="text" placeholder='Titulo' value={titulo}
+        onChange={(event)=>{ setTitulo(event.target.value)}} />
+
+        <textarea name="descricao" id="descricao" placeholder='descrição' value={descricao} 
+        onChange={(event)=>{ setDescricao(event.target.value)}
+        }>
+
+        </textarea>
+        <button type='submit'>Publicar</button>
        </form>
       </div>
     </>
