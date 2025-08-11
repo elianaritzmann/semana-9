@@ -10,6 +10,7 @@ function App() {
   const[data, setData]= useState('')
   const[categoria, setCategoria]= useState('')
   const hoje = new Date()
+  const [qntd, setQntd]=useState(0)
    function save(event){
     event.preventDefault()
     if(titulo === '' || descricao === ''){
@@ -21,10 +22,25 @@ function App() {
     }else if (data<hoje){
       alert('data invalida')
     }
+    
+    const postsExistentes = JSON.parse(localStorage.getItem('posts')) || [];
+    const novoPost = {
+    Titulo: titulo,
+    Descrição: descricao,
+    URL: url,
+    Data: data,
+    Categoria: categoria
+  };
 
-    localStorage.setItem('post', JSON.stringify({Titulo: titulo, Descrição: descricao, URL: url, Data: data, Categoria: categoria}))
+  postsExistentes.push(novoPost);
+  localStorage.setItem('posts', JSON.stringify(postsExistentes));
+
+  if(postsExistentes.length > 0){
+    setQntd(qntd+1);
+  }
+
    }
-  return(
+  return( 
     <>
       <div id='painel'>
         <h1>Painel de gerenciamento</h1>
@@ -49,6 +65,7 @@ function App() {
         </select>
         <button type='submit'>Publicar</button>
        </form>
+       <h3>Quantidade de posts:  {qntd}</h3>
       </div>
     </>
   )
