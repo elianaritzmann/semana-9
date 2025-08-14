@@ -1,5 +1,8 @@
 import './Post.css'
-function post(props){
+
+function Post(props){
+
+    
     return(
     <div >
     
@@ -11,11 +14,11 @@ function post(props){
              <h3>{props.tipo}</h3>
             <h1>{props.titulo}</h1>
             <p>{props.descricao}</p>
-            <span>{props.data}</span>
+            <p>{props.data}</p>
             </div>
 
         
-         <button>Excluir </button>
+         <button onClick={props.handleDelete}>Excluir </button>
         </div>
        
         
@@ -24,4 +27,4 @@ function post(props){
   
 }
 
-export default post
+export default Post

@@ -12,6 +12,10 @@
 .textos{
     padding-left: 60px;
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
 }
 .post img{
     width: 40%;

@@ -25,8 +25,9 @@ function App() {
     
     const postsExistentes = JSON.parse(localStorage.getItem('posts')) || [];
     const novoPost = {
+    id: Date.now(),
     Titulo: titulo,
-    Descrição: descricao,
+    Descricao: descricao,
     URL: url,
     Data: data,
     Categoria: categoria
