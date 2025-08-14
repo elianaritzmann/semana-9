@@ -11,6 +11,10 @@ function App() {
   const[categoria, setCategoria]= useState('')
   const hoje = new Date()
   const [qntd, setQntd]=useState(0)
+  const [qntdArtigo, setQntdArtigo] = useState(0)
+  const [qntdNoticia, setQntdNoticia] = useState(0)
+  const [qntdTutorial, setQntdTutorial] = useState(0)
+  const [qntdEntrevista, setQntdEntrevista] = useState(0)
    function save(event){
     event.preventDefault()
     if(titulo === '' || descricao === ''){
@@ -37,10 +41,34 @@ function App() {
   localStorage.setItem('posts', JSON.stringify(postsExistentes));
 
   if(postsExistentes.length > 0){
-    setQntd(qntd+1);
+    let qntdPosts = postsExistentes.length
+    setQntd(qntdPosts);
+    
   }
+  
+    let artigo = 0;
+    let noticia = 0;
+    let tutorial = 0;
+    let entrevista = 0;
 
-   }
+    postsExistentes.forEach((item) => {
+        if (item.Categoria === 'artigo') {
+            artigo +=1
+        } else if (item.Categoria === 'noticia') {
+            noticia += 1;
+        } else if (item.Categoria === 'tutorial') {
+            tutorial += 1;
+        } else if (item.Categoria === 'entrevista') {
+            entrevista += 1;
+        }
+    });
+    setQntdArtigo(artigo)
+    setQntdNoticia(noticia);
+    setQntdTutorial(tutorial);
+    setQntdEntrevista(entrevista);
+   } 
+
+  
   return( 
     <>
       <div id='painel'>
@@ -67,6 +95,11 @@ function App() {
         <button type='submit'>Publicar</button>
        </form>
        <h3>Quantidade de posts:  {qntd}</h3>
+       <h3>Quantidade de posts por categoria: </h3>
+       <p> Artigo: {qntdArtigo} </p>
+       <p>Noticia: {qntdNoticia}  </p>
+       <p>Tutorial: {qntdTutorial} </p>
+       <p>Entrevista: {qntdEntrevista} </p>
       </div>
     </>
   )
